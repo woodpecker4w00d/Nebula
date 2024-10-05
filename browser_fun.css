@@ -1,0 +1,221 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@font-face {
+  font-family: 'space-age';
+  src: url('other/SPACE AGE.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'space-ranger';
+  src: url('other/SPACERANGER.TTF') format('woff2');
+}
+
+@font-face {
+  font-family: 'decaydence';
+  src: url('other/DECAYDENCE.OTF') format('embedded-opentype');
+}
+
+.title-area {
+  height: calc(100vh * 2/6);
+  background-color: #050505;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+  font-family: decaydence;
+}
+
+.title-area h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.main-section {
+  flex: 1;
+  padding: 20px;
+}
+
+.navbar {
+  height: 100px;
+  background-color: #141414;
+  color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Mobile-friendly adjustments */
+
+/* For screens with a maximum width of 768px (tablets and smaller) */
+@media only screen and (max-width: 768px) {
+  .title-area {
+    height: calc(100vh * 3/6);
+  }
+
+  .main-section {
+    padding: 10px;
+  }
+
+  .navbar {
+    height: 80px;
+    padding: 0 10px;
+  }
+}
+
+/* For screens with a maximum width of 480px (mobile phones) */
+@media only screen and (max-width: 480px) {
+  .title-area {
+    height: calc(100vh * 4/6);
+  }
+
+  .main-section {
+    padding: 5px;
+  }
+
+  .navbar {
+    height: 60px;
+    padding: 0 5px;
+  }
+}
+
+.main-section {
+  flex: 1;
+  background-color: #1a1a1a;
+  padding: 20px;
+  color: whitesmoke;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+.nav-button {
+  background-color: #020745;
+  border: none;
+  color: whitesmoke;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.nav-button:hover {
+  background-color: #1332cd;
+  color: black;
+  transition-duration: 0.4s;
+}
+
+.nav-button:active {
+  background-color: #2f6f31;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #222;
+  color: #eee;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup input {
+  transition-duration: 0.4s;
+  background-color: #6A6A6A;
+  color: whitesmoke;
+  font-size: 20px;
+  border-radius: 12px;
+  border: 2px solid black;
+}
+
+.popup input:hover {
+  background-color: #070C5D; 
+  color: white;
+}
+
+.popup button{
+  color: whitesmoke;
+  background-color: #414142;
+}
+
+/* Mobile-friendly adjustments */
+
+/* For screens with a maximum width of 768px (tablets and smaller) */
+@media only screen and (max-width: 768px) {
+  .main-section {
+    padding: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .nav-button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .popup {
+    width: 80%;
+    padding: 10px;
+  }
+
+  .popup input {
+    font-size: 18px;
+  }
+}
+
+/* For screens with a maximum width of 480px (mobile phones) */
+@media only screen and (max-width: 480px) {
+  .main-section {
+    padding: 5px;
+  }
+
+  nav ul {
+    flex-direction: column;
+  }
+
+  nav li {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .nav-button {
+    padding: 5px;
+    font-size: 12px;
+  }
+
+  .popup {
+    width: 90%;
+    padding: 5px;
+  }
+
+  .popup input {
+    font-size: 16px;
+  }
+}

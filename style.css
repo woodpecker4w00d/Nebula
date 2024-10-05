@@ -1,0 +1,143 @@
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('other/bg.jpg');
+      background-size: cover;
+      background-position: center; 
+    }
+
+@font-face {
+  font-family: 'space-age';
+  src: url('other/SPACE AGE.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'space-ranger';
+  src: url('other/SPACERANGER.TTF') format('woff2');
+}
+
+@font-face {
+  font-family: 'dec';
+  src: url('other/DECAYDENCE.OTF') format('embedded-opentype');
+}
+
+    header {
+      background-color: #292929; 
+      padding: 1em;
+      text-align: center;
+      color: whitesmoke;
+      font-family: spaace-age;
+      flex-direction: column; /* Changed to column */
+       margin-bottom: 10px; /* Added margin bottom */
+       display: flex;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    nav li {
+      margin-right: 20px;
+    }
+
+    nav a {
+       color: whitesmoke;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+       color: whitesmoke;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2em;
+    }
+
+
+
+    .hero {
+      background-image: url('temple-image.jpg'); 
+      font-family: space-age;
+      font: space-age;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+       color: whitesmoke;
+      font-size: 50px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      font-family: space-age;
+      font: space-age;
+    }
+
+    .about,.contact {
+      margin-bottom: 20px;
+      padding: 20px;
+      background-color: #000000; 
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+       color: whitesmoke;
+      opacity: 0.5;
+      font-family: space-ranger;
+      
+      .button {
+        background-color: #474747; /* Green */
+        border: none;
+        color: whitesmoke;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 8px;
+        transition: all 0.5s;
+      }
+      .button span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.5s;
+      }
+
+      .button span:after {
+        content: '\00bb';
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        right: -20px;
+        transition: 0.5s;
+      }
+
+      .button:hover span {
+        padding-right: 25px;
+      }
+
+      .button:hover span:after {
+        opacity: 1;
+        right: 0;
+      }
+    }
+
+    .about h2,.contact h2 {
+      margin-top: 0;
+    }
+
+    footer {
+      background-color: #292929;
+      padding: 1em;
+      text-align: center;
+       color: whitesmoke;
+      opacity: 0.5;
+    }

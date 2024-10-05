@@ -1,0 +1,231 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 0;
+  background-image: linear-gradient(to bottom right, #0F16A8, #17171E);
+  color: whitesmoke;
+  left: 0;
+  line-height: 200px;
+  margin-top: -100px;
+  text-align: center;
+}
+
+@font-face {
+  font-family: 'nasalization';
+  src: url('other/NASALIZATION-RG.ttf') format('truetype');
+}
+
+header {
+  background-color: #000000;
+  padding: 10px;
+  text-align: center;
+  color: whitesmoke;
+  font-family: 'nas';
+  opacity: 0.8;
+}
+
+.navbar {
+  background-color: #000000;
+  padding: 1em;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  height: 11%;
+}
+
+.navbar li {
+  margin-right: 20px;
+}
+
+/* Mobile-friendly adjustments */
+
+/* For screens with a maximum width of 768px (tablets and smaller) */
+@media only screen and (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .navbar li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .navbar {
+    padding: 0.5em;
+  }
+
+  header {
+    padding: 5px;
+  }
+}
+
+/* For screens with a maximum width of 480px (mobile phones) */
+@media only screen and (max-width: 480px) {
+  .navbar ul {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .navbar li {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .navbar {
+    padding: 0.2em;
+  }
+
+  header {
+    padding: 2px;
+  }
+
+  body {
+    line-height: 100px;
+    margin-top: -50px;
+  }
+}
+
+.nav-button {
+  background-color: #2e2e2e;
+  color: whitesmoke;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  border-radius: 8px;
+}
+
+.nav-button:hover {
+  background-color: #000738;
+  transition-duration: 0.7s;
+}
+
+.nav-button.active {
+  background-color: #666;
+}
+
+#search-bar {
+  width: 50%;
+  height: 5%;
+  padding: 10px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #151515;
+  color: whitesmoke;
+}
+
+.custom-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.custom-button:hover {
+  transition: 0.5s;
+  background-color: #0d0d0d;
+  color: whitesmoke;
+  border: whitesmoke;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#home-page {
+  padding: 20px;
+  text-align: center;
+}
+
+#home-page h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  font-family: nasalization;
+}
+
+#home-page p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+/* Mobile-friendly adjustments */
+
+/* For screens with a maximum width of 768px (tablets and smaller) */
+@media only screen and (max-width: 768px) {
+  .nav-button {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  #search-bar {
+    width: 70%;
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  .custom-button {
+    padding: 5px 10px;
+    font-size: 16px;
+  }
+
+  #home-page {
+    padding: 10px;
+  }
+
+  #home-page h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  #home-page p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+}
+
+/* For screens with a maximum width of 480px (mobile phones) */
+@media only screen and (max-width: 480px) {
+  .nav-button {
+    padding: 3px 5px;
+    font-size: 12px;
+  }
+
+  #search-bar {
+    width: 80%;
+    padding: 3px;
+    font-size: 14px;
+  }
+
+  .custom-button {
+    padding: 3px 5px;
+    font-size: 14px;
+  }
+
+  #home-page {
+    padding: 5px;
+  }
+
+  #home-page h1 {
+    font-size: 18px;
+    margin-bottom: 3px;
+  }
+
+  #home-page p {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+}
