@@ -1,0 +1,96 @@
+**ʘ‿ʘ*
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Protected Page</title>
+  <link rel="icon" href="other/favicon.png">
+  </head>
+  <body>
+  <style>
+    /* Add some basic styling to the page */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center; /* Center the content */
+      background-image: linear-gradient(to bottom right, #0F16A8, #17171E);
+    }
+
+    h1 {
+      color: whitesmoke;
+      margin-bottom: 20px;
+    }
+
+    #password-form {
+      margin: 40px auto; /* Center the form */
+      width: 300px; /* Set a fixed width for the form */
+      padding: 20px;
+      border: 1px solid black;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #4C4C4C;
+      color: whitesmoke;
+    }
+
+    #password-form label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    #password-form input[type="password"] {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid black;
+      color: whitesmoke;
+      background-color: #151515;
+    }
+
+    #password-form button[type="submit"] {
+      width: 100%;
+      height: 40px;
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      color: whitesmoke;
+      background-color: #151515;
+    }
+
+    #password-form button[type="submit"]:hover {
+      background-color: #10107D;
+      color: whitesmoke;
+    }
+  </style>
+  <h1>Enter Password To Proceed</h1>
+  <form id="password-form">
+    <label for="password">Enter password:</label>
+    <input type="password" id="password" name="password">
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const passwordForm = document.getElementById('password-form');
+    const correctPassword = '2001fun'; // Replace with your desired password
+
+    passwordForm.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent the form from submitting
+      const inputPassword = document.getElementById('password').value;
+
+      if (inputPassword === correctPassword) {
+        // Password is correct, redirect to another webpage
+        window.location.href = 'chatroom.html';
+      } else {
+        // Password is incorrect, run the fun function
+        fun();
+      }
+    });
+
+    function fun() {
+      // Your function code here
+      alert('Incorrect password!');
+    }
+  </script>
+</body>
+</html>

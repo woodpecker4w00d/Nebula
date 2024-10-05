@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Soft-Body Demo</title>
+</head>
+<style>
+  * {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow-y: hidden;
+  }
+
+  .also-like {
+    text-align: center;
+    background-color: rgb(40, 40, 40);
+    color: white;
+  }
+
+  .also-like > a {
+    color: white;
+  }
+</style>
+<body>
+  <div class="location-not-allowed" style="display: none">
+    Sorry, unlike most Repls, you must run this on <a href="/__repl">the Repl page</a>.
+  </div>
+
+  <div class="also-like">
+    If you like this, you'll also like <a href="https://replit.com/@PyGrammer5/Ball-Physics?v=1" target="_blank">this ball physics simulation</a>.
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.js"></script>
+  <script>
+    let allowedLocation = false;
+    if (location.hostname.endsWith('.id.repl.co')) {
+      allowedLocation = true;
+    } else {
+      document.querySelector('.location-not-allowed').style.display = '';
+    }
+  </script>
+ <script>
+   const substeps = 10;
+
+   let gravity;
+   let joints = [];
+   let connections = [];
+
+   function setup() {
+     if (!allowedLocation) {
+       return;
+     }
+
+     createCanvas(innerWidth, innerHeight);
+
+     gravity = createVector(0, 0.1);
+
+     for (var i = 0; i < 6; i++) {
+       for (var j = 0; j < 6; j++) {
+         joints.push({
+           id: `a${i*10 + j}`,
+           pos: {x: width/2 - 80 + (j - 3)*10, y: 50 + i*10},
+           fixed: false
+         });
+
+         if (i > 0) {
+           connections.push({
+             ends: [`a${(i - 1)*10 + j}`, `a${i*10 + j}`],
+             length: 10
+           });
+         }
+         if (j > 0) {
+           connections.push({
+             ends: [`a${i*10 + j - 1}`, `a${i*10 + j}`],
+             length: 10
+           });
+         }
+         if (i > 0 && j > 0) {
+           connections.push({
+             ends: [`a${(i - 1)*10 + j - 1}`, `a${i*10 + j}`],
+             length: sqrt(200)
+           });
+         }
+         if (i > 0 && j < 5) {
+           connections.push({
+             ends: [`a${(i - 1)*10 + j + 1}`, `a${i*10 + j}`],
+             length: sqrt(200)
+           });
+         }
+       }
+     }
+
+     for (var i = 0; i < 6; i++) {
+       for (var j = 0; j < 6; j++) {
+         joints.push({
+           id: i*10 + j,
+           pos: {x: width/2 + 80 + (j - 3)*10, y: 50 + i*10},
+           fixed: false
+         });
+
+         if (i > 0) {
+           connections.push({
+             ends: [(i - 1)*10 + j, i*10 + j],
+             length: 10
+           });
+         }
+         if (j > 0) {
+           connections.push({
+             ends: [i*10 + j - 1, i*10 + j],
+             length: 10
+           });
+         }
+         if (i > 0 && j > 0) {
+           connections.push({
+             ends: [(i - 1)*10 + j - 1, i*10 + j],
+             length: sqrt(200)
+           });
+         }
+         if (i > 0 && j < 5) {
+           connections.push({
+             ends: [(i - 1)*10 + j + 1, i*10 + j],
+             length: sqrt(200)
+           });
+         }
+       }
+     }
+
+     for (var i = 0; i < floor((height - 100)*2/30); i++) {
+       joints.push({
+         id: `b${i}`,
+         pos: {x: width/2, y: 50 + i*10},
+         fixed: i === 0
+       });
+
+       if (i > 0) {
+         connections.push({
+           ends: [`b${i - 1}`, `b${i}`],
+           length: 10
+         });
+       }
+     }
+
+     joints.forEach((joint) => {
+       joint.oldPos = joint.pos;
+     });
+   }
+
+   function draw() {
+     if (!allowedLocation) {
+       return;
+     }
+
+     background(40);
+
+     textSize(20);
+     strokeWeight(1);
+     noFill();
+     textAlign(CENTER);
+     text('Use your mouse gently to control the objects.', width/2, 30);
+     textSize(10);
+     strokeWeight(1);
+     textAlign(CENTER);
+     text('If you encounter a bug, quickly move your mouse over the buggy area.', width/2, height - 30);
+
+     strokeWeight(3);
+     drawScene();
+     applyVerlet();
+     applyConstraints();
+   }
+
+   function jointById(id) {
+     var targetJoint = null;
+     joints.forEach((joint) => {
+       if (joint.id === id) {
+         targetJoint = joint;
+         return;
+       }
+     });
+
+     return targetJoint;
+   }
+
+   function drawScene() {
+     noFill();
+     stroke(255)
+     rect(50, 50, width - 100, height - 100);
+
+     connections.forEach((connection) => {
+       stroke(255, 255, 255);
+       strokeWeight(3);
+       line(jointById(connection.ends[0]).pos.x, jointById(connection.ends[0]).pos.y, jointById(connection.ends[1]).pos.x, jointById(connection.ends[1]).pos.y);
+     });
+   }
+
+   function applyVerlet() {
+     joints.forEach((joint) => {
+       oldPos = joint.oldPos;
+       joint.oldPos = JSON.parse(JSON.stringify(joint.pos));
+       joint.pos.x += (joint.pos.x - oldPos.x + gravity.x*!joint.fixed)*0.99;
+       joint.pos.y += (joint.pos.y - oldPos.y + gravity.y*!joint.fixed)*0.99;
+     })
+   }
+
+   function applyConstraints() {
+     for (var i = 0; i < substeps; i++) {
+       constrainAll();
+     }
+   }
+
+   function constrainAll() {
+     connections.forEach((connection) => {
+       var ends = [jointById(connection.ends[0]), jointById(connection.ends[1])];
+       var jointConnection = createVector(ends[1].pos.x - ends[0].pos.x, ends[1].pos.y - ends[0].pos.y);
+       var oldJointConnection = jointConnection.copy();
+       jointConnection.setMag(connection.length);
+
+       if (ends[0].fixed) {
+         ends[1].pos.x = ends[0].pos.x + jointConnection.x;
+         ends[1].pos.y = ends[0].pos.y + jointConnection.y;
+       } else if (ends[1].fixed) {
+         ends[0].pos.x = ends[1].pos.x - jointConnection.x;
+         ends[0].pos.y = ends[1].pos.y - jointConnection.y;
+       } else {
+         ends[0].pos.x += (oldJointConnection.x - jointConnection.x)/2;
+         ends[0].pos.y += (oldJointConnection.y - jointConnection.y)/2;
+
+         ends[1].pos.x -= (oldJointConnection.x - jointConnection.x)/2;
+         ends[1].pos.y -= (oldJointConnection.y - jointConnection.y)/2;
+       }
+
+       ends.forEach((end) => {
+         if (end.fixed) {
+           return;
+         }
+
+         var mouseVec = createVector(end.pos.x - mouseX, end.pos.y - mouseY);
+         if (mouseVec.mag() < 12) {
+           mouseVec.setMag(12);
+           end.pos.x = mouseX + mouseVec.x;
+           end.pos.y = mouseY + mouseVec.y;
+         }
+
+         if (end.pos.y < 50) {
+           end.pos.y = 50;
+         }
+         if (end.pos.y > height - 50) {
+           end.pos.y = height - 50;
+         }
+         if (end.pos.x < 50) {
+           end.pos.x = 50;
+         }
+         if (end.pos.x > width - 50) {
+           end.pos.x = width - 50;
+         }
+       })
+     });
+
+     joints.forEach((joint) => {
+       joints.forEach((test) => {
+         var testVec = createVector(joint.pos.x - test.pos.x, joint.pos.y - test.pos.y);
+         if (testVec.mag() < 10 && test.id !== joint.id && !(joint.fixed || test.fixed)) {
+           testVec.setMag(10);
+           oldJoint = JSON.parse(JSON.stringify(joint));
+           joint.pos.x = (test.pos.x + joint.pos.x)/2 + testVec.x/2;
+           joint.pos.y = (test.pos.y + joint.pos.y)/2 + testVec.y/2;
+           test.pos.x = (test.pos.x + oldJoint.pos.x)/2 - testVec.x/2;
+           test.pos.y = (test.pos.y + oldJoint.pos.y)/2 - testVec.y/2;
+         }
+       });
+     });
+   }
+ </script>
+</body>
+
+</html>
