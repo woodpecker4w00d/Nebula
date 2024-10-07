@@ -43,9 +43,7 @@ header {
   margin-right: 20px;
 }
 
-/* Mobile-friendly adjustments */
 
-/* For screens with a maximum width of 768px (tablets and smaller) */
 @media only screen and (max-width: 768px) {
   .navbar ul {
     flex-direction: column;
@@ -66,7 +64,7 @@ header {
   }
 }
 
-/* For screens with a maximum width of 480px (mobile phones) */
+
 @media only screen and (max-width: 480px) {
   .navbar ul {
     flex-direction: column;
@@ -162,9 +160,7 @@ header {
   margin-bottom: 20px;
 }
 
-/* Mobile-friendly adjustments */
 
-/* For screens with a maximum width of 768px (tablets and smaller) */
 @media only screen and (max-width: 768px) {
   .nav-button {
     padding: 5px 10px;
@@ -197,7 +193,7 @@ header {
   }
 }
 
-/* For screens with a maximum width of 480px (mobile phones) */
+
 @media only screen and (max-width: 480px) {
   .nav-button {
     padding: 3px 5px;
