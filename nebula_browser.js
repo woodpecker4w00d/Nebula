@@ -19,6 +19,6 @@ searchButton.addEventListener('click', () => {
 });
 
 customizeButton.addEventListener('click', () => {
-  // Add code to customize the home page here
+  
   alert('Button Not Availabe Right Now');
 });
