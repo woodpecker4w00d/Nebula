@@ -9,17 +9,17 @@
 
 @font-face {
   font-family: 'space-age';
-  src: url('other/SPACE AGE.TTF') format('truetype');
+  src: url('/other/SPACE AGE.TTF') format('truetype');
 }
 
 @font-face {
   font-family: 'space-ranger';
-  src: url('other/SPACERANGER.TTF') format('woff2');
+  src: url('/other/SPACERANGER.TTF') format('woff2');
 }
 
 @font-face {
   font-family: 'dec';
-  src: url('other/DECAYDENCE.OTF') format('embedded-opentype');
+  src: url('/other/DECAYDENCE.OTF') format('embedded-opentype');
 }
 
     header {
@@ -28,8 +28,8 @@
       text-align: center;
       color: whitesmoke;
       font-family: spaace-age;
-      flex-direction: column; /* Changed to column */
-       margin-bottom: 10px; /* Added margin bottom */
+      flex-direction: column; 
+       margin-bottom: 10px; 
        display: flex;
     }
 
@@ -93,7 +93,7 @@
       font-family: space-ranger;
       
       .button {
-        background-color: #474747; /* Green */
+        background-color: #474747; 
         border: none;
         color: whitesmoke;
         padding: 15px 32px;
